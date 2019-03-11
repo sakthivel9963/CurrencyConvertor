@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 6174,
+  "expoServerNgrokUrl": "https://p5-fvt.anonymous.currencyconverter.exp.direct",
+  "packagerNgrokUrl": "https://packager.p5-fvt.anonymous.currencyconverter.exp.direct",
+  "ngrokPid": 6215,
+  "webpackServerPort": null
+}
