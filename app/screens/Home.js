@@ -1,6 +1,7 @@
 import React from 'react';
-import { StatusBar, Text } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Container } from '../components/Container';
+import { Logo } from '../components/Logo';
 
 // Return a funciton using two method
 // First Method
@@ -16,7 +17,7 @@ import { Container } from '../components/Container';
 const Home = () => (
   <Container>
     <StatusBar translucent={false} barStyle="light-content" />
-    <Text>Sakthivel</Text>
+    <Logo />
   </Container>
 );
 
