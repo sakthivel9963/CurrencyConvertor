@@ -5,7 +5,7 @@ import styles from './styles';
 
 const Container = ({ children }) => <View style={styles.container}>{children}</View>;
 
-Container.prototype = {
+Container.propTypes = {
   children: PropTypes.any
 };
 
