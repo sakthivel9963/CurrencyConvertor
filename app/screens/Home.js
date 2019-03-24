@@ -6,6 +6,7 @@ import { Logo } from '../components/Logo';
 import { LastConverted } from '../components/Text';
 import { InputWithButton } from '../components/TextInput';
 import { Header } from '../components/Header';
+import PropTypes from 'prop-types';
 
 const TEMP_BASE_CURRENCY = 'INR';
 const TEMP_QUOTE_CURRENCY = 'AMR';
@@ -14,12 +15,18 @@ const TEMP_QUOTE_PRICE = '1';
 const TEMP_COVERSION_RATE = 0.789;
 const TEMP_CONVERSION_DATE = new Date();
 class Home extends Component {
+  static propsType = {
+    navigation: PropTypes.object
+  };
+
   handleBaseCurrency = () => {
-    console.log('BaseCurrencyPressed');
+    // console.log('BaseCurrencyPressed');
+    this.props.navigation.navigate('CurrencyList', { title: 'Base Currency' });
   };
 
   handleQuoteCurrency = () => {
-    console.log('QuoteCurrencyPressed');
+    // console.log('QuoteCurrencyPressed');
+    this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency' });
   };
 
   handleKeyPress = text => {
