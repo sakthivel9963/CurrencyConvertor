@@ -8,6 +8,8 @@ EStyleSheet.build({
   $borderColor: '#55697a',
   $inputColor: '#2a675f',
   $lightGrayColor: '#d3d3d3'
+
+  // $outline: 1  // To show outline of all the components
 });
 
 export default () => <Home />;

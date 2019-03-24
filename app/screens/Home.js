@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, KeyboardAvoidingView } from 'react-native';
 import { ClearButton } from '../components/Buttons';
 import { Container } from '../components/Container';
 import { Logo } from '../components/Logo';
 import { LastConverted } from '../components/Text';
 import { InputWithButton } from '../components/TextInput';
+import { Header } from '../components/Header';
 
 const TEMP_BASE_CURRENCY = 'INR';
 const TEMP_QUOTE_CURRENCY = 'AMR';
@@ -29,15 +30,22 @@ class Home extends Component {
     console.log('Reverse Currecy Pressed');
   };
 
+  handleOptionPress = () => {
+    console.log('Option is pressed');
+  };
+
   render() {
     return (
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
-        <Logo />
-        <InputWithButton buttonText={TEMP_BASE_CURRENCY} defaultValue={TEMP_BASE_PRICE} onPress={this.handleBaseCurrency} keyboardType="numeric" onChange={this.handleKeyPress} />
-        <InputWithButton buttonText={TEMP_QUOTE_CURRENCY} value={TEMP_QUOTE_PRICE} onPress={this.handleQuoteCurrency} editable={false} />
-        <LastConverted base={TEMP_BASE_CURRENCY} quote={TEMP_QUOTE_CURRENCY} date={TEMP_CONVERSION_DATE} conversionRate={TEMP_COVERSION_RATE} />
-        <ClearButton text="Reverse Currency" onPress={this.handleReverseCurrency} />
+        <Header onPress={this.handleOptionPress} />
+        <KeyboardAvoidingView behavior="padding">
+          <Logo />
+          <InputWithButton buttonText={TEMP_BASE_CURRENCY} defaultValue={TEMP_BASE_PRICE} onPress={this.handleBaseCurrency} keyboardType="numeric" onChange={this.handleKeyPress} />
+          <InputWithButton buttonText={TEMP_QUOTE_CURRENCY} value={TEMP_QUOTE_PRICE} onPress={this.handleQuoteCurrency} editable={false} />
+          <LastConverted base={TEMP_BASE_CURRENCY} quote={TEMP_QUOTE_CURRENCY} date={TEMP_CONVERSION_DATE} conversionRate={TEMP_COVERSION_RATE} />
+          <ClearButton text="Reverse Currency" onPress={this.handleReverseCurrency} />
+        </KeyboardAvoidingView>
       </Container>
     );
   }
