@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Platform, ScrollView, StatusBar } from 'react-native';
+import { Platform, ScrollView, StatusBar, Linking } from 'react-native';
 import { ListItem, Seprator } from '../components/List/index';
 
 const ICON_COLOR = '#868686';
@@ -19,6 +19,9 @@ export default class Options extends Component {
 
   handleSitePress = () => {
     console.log('site pressed');
+    Linking.openURL('https://fixer.io/').catch(() => {
+      alert('An error occured');
+    });
   };
 
   render() {
