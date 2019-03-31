@@ -8,16 +8,18 @@ import { Logo } from '../components/Logo';
 import { LastConverted } from '../components/Text';
 import { InputWithButton } from '../components/TextInput';
 import { swapCurrency, changeCurrencyAmount } from '../actions/currencies';
+import { connect } from 'react-redux';
 
-const TEMP_BASE_CURRENCY = 'INR';
-const TEMP_QUOTE_CURRENCY = 'AMR';
-const TEMP_BASE_PRICE = '78';
-const TEMP_QUOTE_PRICE = '1';
+const TEMP_BASE_CURRENCY = 'USD';
+const TEMP_QUOTE_CURRENCY = 'GBP';
+const TEMP_BASE_PRICE = '100';
+const TEMP_QUOTE_PRICE = '79.94';
 const TEMP_COVERSION_RATE = 0.789;
 const TEMP_CONVERSION_DATE = new Date();
 class Home extends Component {
   static propsType = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
+    dispathc: PropTypes.func
   };
 
   handleBaseCurrency = () => {
@@ -31,13 +33,11 @@ class Home extends Component {
   };
 
   handleKeyPress = amount => {
-    // TODO: Make this actually work with this.props.dispatch
-    console.log(changeCurrencyAmount(amount));
+    this.props.dispatch(changeCurrencyAmount(amount));
   };
 
   handleReverseCurrency = () => {
-    // TODO: Make this actually work with this.props.dispatch
-    console.log(swapCurrency());
+    this.props.dispatch(swapCurrency());
   };
 
   handleOptionPress = () => {
@@ -52,7 +52,7 @@ class Home extends Component {
         <Header onPress={this.handleOptionPress} />
         <KeyboardAvoidingView behavior="padding">
           <Logo />
-          <InputWithButton buttonText={TEMP_BASE_CURRENCY} defaultValue={TEMP_BASE_PRICE} onPress={this.handleBaseCurrency} keyboardType="numeric" onChange={this.handleKeyPress} />
+          <InputWithButton buttonText={TEMP_BASE_CURRENCY} defaultValue={TEMP_BASE_PRICE} onPress={this.handleBaseCurrency} keyboardType="numeric" onChangeText={this.handleKeyPress} />
           <InputWithButton buttonText={TEMP_QUOTE_CURRENCY} value={TEMP_QUOTE_PRICE} onPress={this.handleQuoteCurrency} editable={false} />
           <LastConverted base={TEMP_BASE_CURRENCY} quote={TEMP_QUOTE_CURRENCY} date={TEMP_CONVERSION_DATE} conversionRate={TEMP_COVERSION_RATE} />
           <ClearButton text="Reverse Currency" onPress={this.handleReverseCurrency} />
@@ -62,4 +62,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect()(Home);
