@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FlatList, StatusBar, View } from 'react-native';
 import { ListItem, Seprator } from '../components/List';
 import currencies from '../data/currencies';
-import React { Component} from 'react';
+import React, { Component } from 'react';
 
 const TEMP_CURRENT_CURRENCY = 'CAD';
 
