@@ -1,6 +1,7 @@
 import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Navigator from './config/routes';
+import { AlertProvider } from './components/Alert/index';
 
 EStyleSheet.build({
   $primaryColor: '#1565C0',
@@ -16,4 +17,10 @@ EStyleSheet.build({
   // $outline: 1  // To show outline of all the components
 });
 
-export default () => <Navigator />;
+export default () => {
+  return (
+    <AlertProvider>
+      <Navigator />
+    </AlertProvider>
+  );
+};
