@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StatusBar, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import { ClearButton } from '../components/Buttons';
 import { Container } from '../components/Container';
+import { Header } from '../components/Header';
 import { Logo } from '../components/Logo';
 import { LastConverted } from '../components/Text';
 import { InputWithButton } from '../components/TextInput';
-import { Header } from '../components/Header';
-import PropTypes from 'prop-types';
+import { swapCurrency, changeCurrencyAmount } from '../actions/currencies';
 
 const TEMP_BASE_CURRENCY = 'INR';
 const TEMP_QUOTE_CURRENCY = 'AMR';
@@ -29,12 +30,14 @@ class Home extends Component {
     this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency' });
   };
 
-  handleKeyPress = text => {
-    console.log('key pressed', text);
+  handleKeyPress = amount => {
+    // TODO: Make this actually work with this.props.dispatch
+    console.log(changeCurrencyAmount(amount));
   };
 
   handleReverseCurrency = () => {
-    console.log('Reverse Currecy Pressed');
+    // TODO: Make this actually work with this.props.dispatch
+    console.log(swapCurrency());
   };
 
   handleOptionPress = () => {
