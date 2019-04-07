@@ -9,6 +9,8 @@ import { Header } from '../components/Header';
 import { Logo } from '../components/Logo';
 import { LastConverted } from '../components/Text';
 import { InputWithButton } from '../components/TextInput';
+import { connectAlert } from '../components/Alert/index';
+
 class Home extends Component {
   static propsType = {
     navigation: PropTypes.object,
@@ -19,11 +21,19 @@ class Home extends Component {
     conversionRate: PropTypes.number,
     isFetching: PropTypes.bool,
     lastConversionDate: PropTypes.object,
-    primaryColor: PropTypes.string
+    primaryColor: PropTypes.string,
+    alertWithType: PropTypes.func,
+    currencyError: PropTypes.string
   };
 
   componentWillMount() {
     this.props.dispatch(getInitialConversion());
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currencyError && nextProps.currencyError !== this.props.currencyError) {
+      this.props.alertWithType('error', 'ERROR', nextProps.currencyError);
+    }
   }
 
   handleBaseCurrency = () => {
@@ -87,6 +97,7 @@ const mapStateToProps = state => {
   const conversionRate = rates[quoteCurrency] || 0;
   const lastConversionDate = conversionSelector.date ? new Date(conversionSelector.date) : new Date();
   const primaryColor = state.theme.primaryColor;
+  const currencyError = state.currencies.error;
 
   return {
     baseCurrency,
@@ -95,8 +106,9 @@ const mapStateToProps = state => {
     conversionRate,
     isFetching,
     lastConversionDate,
-    primaryColor
+    primaryColor,
+    currencyError
   };
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(connectAlert(Home));
