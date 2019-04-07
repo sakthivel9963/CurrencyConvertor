@@ -3,8 +3,8 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://p5-fvt.sakthivel9963.currencyconverter.exp.direct",
+  "packagerNgrokUrl": "https://packager.p5-fvt.sakthivel9963.currencyconverter.exp.direct",
+  "ngrokPid": 19609,
   "webpackServerPort": null
 }
