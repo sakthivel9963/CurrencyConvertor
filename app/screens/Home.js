@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { changeCurrencyAmount, swapCurrency } from '../actions/currencies';
+import { changeCurrencyAmount, swapCurrency, getInitialConversion } from '../actions/currencies';
 import { ClearButton } from '../components/Buttons';
 import { Container } from '../components/Container';
 import { Header } from '../components/Header';
@@ -21,6 +21,10 @@ class Home extends Component {
     lastConversionDate: PropTypes.object,
     primaryColor: PropTypes.string
   };
+
+  componentWillMount() {
+    this.props.dispatch(getInitialConversion());
+  }
 
   handleBaseCurrency = () => {
     // console.log('BaseCurrencyPressed');
