@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, ImageBackground, Keyboard, Text, View, Platform, StyleSheet } from 'react-native';
+import { Animated, Keyboard, Platform, StyleSheet, Text, View } from 'react-native';
 import styles from './styles';
 
 const ANIMATION_DURATION = 250;

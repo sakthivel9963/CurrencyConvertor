@@ -1,4 +1,4 @@
-import { CHANGE_CURRENCY_AMOUNT, SWAP_CURRENCY } from '../actions/currencies';
+import { CHANGE_CURRENCY_AMOUNT, SWAP_CURRENCY, CHANGE_BASE_CURRENCY, CHANGE_QUOTE_CURRENCY } from '../actions/currencies';
 
 // const initialState = {
 //   baseCurrency: 'USD',
@@ -53,6 +53,23 @@ const initialState = {
   }
 };
 
+const setConversion = (state, actions) => {
+  let conversion = {
+    isFetching: true,
+    date: '',
+    rates: {}
+  };
+
+  if (state.conversions[actions.currency]) {
+    conversion = state.conversions[actions.currency];
+  }
+
+  return {
+    ...state.conversions,
+    [actions.currency]: conversion
+  };
+};
+
 const reducer = (state = initialState, actions) => {
   switch (actions.type) {
     case CHANGE_CURRENCY_AMOUNT:
@@ -65,6 +82,18 @@ const reducer = (state = initialState, actions) => {
         ...state,
         baseCurrency: state.quoteCurrency,
         quoteCurrency: state.baseCurrency
+      };
+    case CHANGE_BASE_CURRENCY:
+      return {
+        ...state,
+        baseCurrency: actions.currency,
+        conversions: setConversion(state, actions)
+      };
+    case CHANGE_QUOTE_CURRENCY:
+      return {
+        ...state,
+        quoteCurrency: actions.currency,
+        conversions: setConversion(state, actions)
       };
     default:
       return state;
