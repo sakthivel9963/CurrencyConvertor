@@ -19,7 +19,8 @@ export default EStyleSheet.create({
     height: '$largeContainerSize'
   },
   logo: {
-    width: '$largeImageSize'
+    width: '$largeImageSize',
+    tintColor: '$primaryColor'
   },
   text: {
     fontWeight: '600',

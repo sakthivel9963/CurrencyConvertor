@@ -18,7 +18,8 @@ class Home extends Component {
     amount: PropTypes.number,
     conversionRate: PropTypes.number,
     isFetching: PropTypes.bool,
-    lastConversionDate: PropTypes.object
+    lastConversionDate: PropTypes.object,
+    primaryColor: PropTypes.string
   };
 
   handleBaseCurrency = () => {
@@ -50,19 +51,20 @@ class Home extends Component {
       quotePrice = '...';
     }
     return (
-      <Container>
+      <Container backgroundColor={this.props.primaryColor}>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handleOptionPress} />
         <KeyboardAvoidingView behavior="padding">
-          <Logo />
+          <Logo tintColor={this.props.primaryColor} />
           <InputWithButton
             buttonText={this.props.baseCurrency}
             defaultValue={this.props.amount.toString()}
             onPress={this.handleBaseCurrency}
             keyboardType="numeric"
             onChangeText={this.handleKeyPress}
+            textColor={this.props.primaryColor}
           />
-          <InputWithButton buttonText={this.props.quoteCurrency} value={quotePrice} onPress={this.handleQuoteCurrency} editable={false} />
+          <InputWithButton buttonText={this.props.quoteCurrency} value={quotePrice} onPress={this.handleQuoteCurrency} editable={false} textColor={this.props.primaryColor} />
           <LastConverted base={this.props.baseCurrency} quote={this.props.quoteCurrency} date={this.props.lastConversionDate} conversionRate={this.props.conversionRate} />
           <ClearButton text="Reverse Currency" onPress={this.handleReverseCurrency} />
         </KeyboardAvoidingView>
@@ -80,6 +82,7 @@ const mapStateToProps = state => {
   const isFetching = conversionSelector.isFetching;
   const conversionRate = rates[quoteCurrency] || 0;
   const lastConversionDate = conversionSelector.date ? new Date(conversionSelector.date) : new Date();
+  const primaryColor = state.theme.primaryColor;
 
   return {
     baseCurrency,
@@ -87,7 +90,8 @@ const mapStateToProps = state => {
     amount,
     conversionRate,
     isFetching,
-    lastConversionDate
+    lastConversionDate,
+    primaryColor
   };
 };
 

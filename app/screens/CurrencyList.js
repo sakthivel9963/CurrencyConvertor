@@ -6,14 +6,13 @@ import { changeBaseCurrency, changeQuoteCurrency } from '../actions/currencies';
 import { ListItem, Seprator } from '../components/List';
 import currencies from '../data/currencies';
 
-const TEMP_CURRENT_CURRENCY = 'CAD';
-
 class CurrencyList extends Component {
   static propsType = {
     navigation: PropTypes.object,
     dispatch: PropTypes.func,
     baseCurrency: PropTypes.string,
-    quoteCurrency: PropTypes.string
+    quoteCurrency: PropTypes.string,
+    primaryColor: PropTypes.string
   };
 
   handlePress = currency => {
@@ -36,7 +35,9 @@ class CurrencyList extends Component {
         <StatusBar barStyle="default" translucent={false} />
         <FlatList
           data={currencies}
-          renderItem={({ item }) => <ListItem text={item} selected={item === selectedCurrency} onPress={() => this.handlePress(item)} checkmark={true} visible={true} />}
+          renderItem={({ item }) => (
+            <ListItem text={item} selected={item === selectedCurrency} onPress={() => this.handlePress(item)} checkmark={true} visible={true} iconBackground={this.props.primaryColor} />
+          )}
           keyExtractor={item => item}
           ItemSeparatorComponent={Seprator}
         />
@@ -48,10 +49,12 @@ class CurrencyList extends Component {
 const mapStateToProps = state => {
   const baseCurrency = state.currencies.baseCurrency;
   const quoteCurrency = state.currencies.quoteCurrency;
+  const primaryColor = state.theme.primaryColor;
 
   return {
     baseCurrency,
-    quoteCurrency
+    quoteCurrency,
+    primaryColor
   };
 };
 
